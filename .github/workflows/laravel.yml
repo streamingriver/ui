@@ -58,23 +58,6 @@ jobs:
       - name: Run Static Analysis
         run: ./vendor/bin/phpstan --error-format=github
 
-  build:
-    name: Build and Push Docker Image
-    
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@v5
-      with:
-        name: streamingriver/ui/sr-ui
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-        registry: ghcr.io
-        snapshot: true
-        default_branch: main
-        dockerfile: .docker/php/Dockerfile
-
   notify:
     name: Send notification to Matrix Channel
     if: always()
