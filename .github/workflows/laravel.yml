@@ -20,6 +20,9 @@ jobs:
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --ignore-platform-reqs
+    - name: Prepare Laravel Application
+      run: |
+        cp .env.ci .env
     - name: Generate key
       run: php artisan key:generate
     - name: Directory Permissions
@@ -37,7 +40,7 @@ jobs:
   notify:
       if: always()
       runs-on: ubuntu-latest
-      needs: [laravel-tests]
+      needs: [laravel-tests, phpstan]
       steps:
         - uses: Cadair/matrix-notify-action@main
           id: message
