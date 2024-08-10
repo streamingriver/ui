@@ -34,7 +34,7 @@ jobs:
         DB_DATABASE: database/database.sqlite
       run: php artisant test 
 
-    notify:
+  notify:
       if: always()
       runs-on: ubuntu-latest
       needs: [laravel-tests]
