@@ -49,3 +49,22 @@ jobs:
   
         - name: Print the event ID
           run: echo "Sent Matrix Event '${{ steps.message.outputs.eventId }}'"
+
+
+  phpstan:
+    name: Static Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+ 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+ 
+      - name: Install composer dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --ignore-platform-reqs
+ 
+      - name: Run Static Analysis
+        run: ./vendor/bin/phpstan --error-format=github
