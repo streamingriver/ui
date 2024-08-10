@@ -42,7 +42,7 @@ jobs:
     name: Send notification to Matrix Channel
     if: always()
     runs-on: ubuntu-latest
-    needs: [laravel-tests, phpstan]
+    needs: [laravel-tests, phpstan, build]
     steps:
       - uses: Cadair/matrix-notify-action@main
         id: message
