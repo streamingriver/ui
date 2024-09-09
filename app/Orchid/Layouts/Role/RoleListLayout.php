@@ -27,14 +27,14 @@ class RoleListLayout extends Table
             TD::make('name', __('Name'))
                 ->sort()
                 ->cantHide()
-                ->filter(Input::make())
+                ->filter()
                 ->render(fn (Role $role) => Link::make($role->name)
-                    ->route('platform.systems.roles.edit', $role->id)),
+                    ->route('platform.systems.roles.edit', [$role->id])),
 
             TD::make('slug', __('Slug'))
                 ->sort()
                 ->cantHide()
-                ->filter(Input::make()),
+                ->filter(),
 
             TD::make('created_at', __('Created'))
                 ->usingComponent(DateTimeSplit::class)

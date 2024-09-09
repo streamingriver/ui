@@ -31,13 +31,13 @@ class UserListLayout extends Table
             TD::make('name', __('Name'))
                 ->sort()
                 ->cantHide()
-                ->filter(Input::make())
+                // ->filter(Input::make())
                 ->render(fn (User $user) => new Persona($user->presenter())),
 
             TD::make('email', __('Email'))
                 ->sort()
                 ->cantHide()
-                ->filter(Input::make())
+                ->filter()
                 ->render(fn (User $user) => ModalToggle::make($user->email)
                     ->modal('editUserModal')
                     ->modalTitle($user->presenter()->title())
@@ -65,7 +65,7 @@ class UserListLayout extends Table
                     ->list([
 
                         Link::make(__('Edit'))
-                            ->route('platform.systems.users.edit', $user->id)
+                            ->route('platform.systems.users.edit', [$user->id])
                             ->icon('bs.pencil'),
 
                         Button::make(__('Delete'))
