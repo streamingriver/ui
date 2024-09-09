@@ -10,6 +10,7 @@
         "laravel/tinker": "^2.9",
         "lorisleiva/laravel-actions": "^2.8",
         "nwidart/laravel-modules": "^11.0",
+        "orchid/platform": "^14.34",
         "tormjens/eventy": "^0.9.4"
     },
     "require-dev": {
